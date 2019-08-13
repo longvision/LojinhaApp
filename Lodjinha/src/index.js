@@ -1,16 +1,31 @@
 import React from 'react';
-
 import '~/config/ReactotronConfig';
-
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
-import store from './store';
 
-import Routes from '~/routes';
+import store from '~/store';
 
-const App = () => (
-  <Provider store={store}>
-    <Routes />
-  </Provider>
-);
+import RootNavigation from '~/navigation/RootNavigation';
 
-export default App;
+//Tema central da estilização do React-Native Paper
+// const theme = {
+//   ...DefaultTheme,
+//   colors: {
+//     ...DefaultTheme.color,
+//     primary: '#48285b',
+//     accent: '#fee166'
+//   }
+// };
+
+//Ponto de entrada da aplicação
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        {/* <PaperProvider> */}
+        <RootNavigation />
+        {/* </PaperProvider> */}
+      </Provider>
+    );
+  }
+}

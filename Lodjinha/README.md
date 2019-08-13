@@ -4,6 +4,15 @@
 *** Request ou abra uma Issue com a tag "sugestão".
 *** Obrigado novamente! Agora vamos rodar esse projeto incrível :D
 -->
+https://stackoverflow.com/questions/50453883/react-native-build-failed-react-rctbridge-h-file-not-found
+
+iOS Steps:
+Open terminal
+Go to the ios folder
+Quit Xcode
+run pod install
+Open .xcworkspace file.
+Clean (cmd+shift+k) and build (cmd+b) the project.
 
 <!-- PROJECT SHIELDS -->
 
@@ -27,18 +36,18 @@
 
 ## Tabela de Conteúdo
 
-- [Tabela de Conteúdo](#tabela-de-conte%C3%BAdo)
+- [Tabela de Conteúdo](#tabela-de-conte%c3%bado)
 - [Sobre o Projeto](#sobre-o-projeto)
   - [Feito Com](#feito-com)
-- [Começando](#come%C3%A7ando)
-  - [Pré-requisitos](#pr%C3%A9-requisitos)
+- [Começando](#come%c3%a7ando)
+  - [Pré-requisitos](#pr%c3%a9-requisitos)
   - [Estrutura de Arquivos](#estrutura-de-arquivos)
-  - [Instalação](#instala%C3%A7%C3%A3o)
+  - [Instalação](#instala%c3%a7%c3%a3o)
     - [Passo Adicional no Android](#passo-adicional-no-android)
-  - [Edição](#edi%C3%A7%C3%A3o)
-  - [Publicação](#publica%C3%A7%C3%A3o)
-- [Contribuição](#contribui%C3%A7%C3%A3o)
-- [Licença](#licen%C3%A7a)
+  - [Edição](#edi%c3%a7%c3%a3o)
+  - [Publicação](#publica%c3%a7%c3%a3o)
+- [Contribuição](#contribui%c3%a7%c3%a3o)
+- [Licença](#licen%c3%a7a)
 - [Contato](#contato)
 
 <!-- ABOUT THE PROJECT -->
