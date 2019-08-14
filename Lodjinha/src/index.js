@@ -18,14 +18,12 @@ import RootNavigation from '~/navigation/RootNavigation';
 // };
 
 //Ponto de entrada da aplicação
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        {/* <PaperProvider> */}
-        <RootNavigation />
-        {/* </PaperProvider> */}
-      </Provider>
-    );
-  }
+export default function App() {
+  return (
+    <Provider store={store}>
+      {/* <PaperProvider> */}
+      <RootNavigation />
+      {/* </PaperProvider> */}
+    </Provider>
+  );
 }

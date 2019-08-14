@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 
 import Home from '~/pages/Home';
+// import Banners from '~/modules/Banners'
 
 const HomeScreenNavigator = createStackNavigator(
   {

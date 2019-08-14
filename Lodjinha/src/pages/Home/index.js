@@ -9,15 +9,13 @@ import {
   View
 } from 'react-native';
 
-import Banner from '~/components/Banner';
+import Banners from '~/modules/Banners';
 import { Container } from './styles';
 
-export default class Home extends Component {
-  render() {
-    return (
-      <Container>
-        <Banner />
-      </Container>
-    );
-  }
+export default function Home() {
+  return (
+    <Container>
+      <Banners />
+    </Container>
+  );
 }
