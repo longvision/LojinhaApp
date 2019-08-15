@@ -5,5 +5,5 @@ export const Container = styled.View.attrs({
   contentContainerStyles: { paddingTop: getStatusBarHeight() + 20 }
 })`
   flex: 1;
-  background-color: #48285b;
+  background-color: #fff;
 `;

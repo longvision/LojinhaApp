@@ -63,8 +63,6 @@ export default Banners;
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row',
     marginTop: Platform.OS === 'ios' ? 34 : 0
   },
   list: {

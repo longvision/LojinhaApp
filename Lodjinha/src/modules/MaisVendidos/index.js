@@ -11,52 +11,49 @@ import {
   Dimensions
 } from 'react-native';
 
-import Category from '~/components/Category';
+import Product from '~/components/Product';
 import api from '~/services/api';
 
-function Categories() {
+function MaisVendidos() {
   //Estado local: gyms
-  const [categories, setCategories] = useState();
+  const [maisvendidos, setMaisVendidos] = useState();
 
-  // console.log(categories);
+  //Chama a api para carregar as lista de gyms
+  console.log(maisvendidos);
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
-    //Chama a api para carregar as lista de gyms
-    async function loadCategories() {
-      const response = await api.get('/categoria/');
+    async function loadMaisVendidos() {
+      const response = await api.get('/produto/maisvendidos/');
       const data = response.data.data.map(b => ({
         ...b
       }));
-      setCategories(data);
+      setMaisVendidos(data);
     }
-    loadCategories();
+    loadMaisVendidos();
   }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.text}>Categorias</Text>
+        <Text style={styles.text}>Mais vendidos</Text>
       </View>
       <FlatList
         style={styles.list}
-        data={categories}
-        horizontal={true}
+        data={maisvendidos}
         keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => <Category data={item} />}
+        renderItem={({ item }) => <Product data={item} />}
       />
     </View>
   );
 }
 
-export default Categories;
+export default MaisVendidos;
 
 //Estilização do componente
 const styles = StyleSheet.create({
-  container: {
-    height: 180
-  },
+  container: {},
   list: {
-    marginTop: 1
+    marginTop: 15
   },
   ban: {
     flex: 1,
@@ -69,9 +66,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#c4c4c4',
-    width: '100%',
-    height: 30,
-    marginTop: 10
+    borderTopWidth: 1,
+    borderTopColor: '#c4c4c4',
+    width: '100%'
   },
   text: {
     fontSize: 17,

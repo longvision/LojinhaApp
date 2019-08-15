@@ -11,6 +11,7 @@ import {
 
 import Banners from '~/modules/Banners';
 import Categories from '~/modules/Categories';
+import MaisVendidos from '~/modules/MaisVendidos';
 import { Container } from './styles';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
     <Container>
       <Banners />
       <Categories />
+      <MaisVendidos />
     </Container>
   );
 }
