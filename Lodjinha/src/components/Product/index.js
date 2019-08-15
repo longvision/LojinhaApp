@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
 
 //Inicio do componente
-export default function Product({ data }) {
+export default function Product({ data, navigation }) {
   return (
     <View key={String(data.id)} style={styles.item}>
       <Image source={{ uri: data.urlImagem }} style={styles.img} />

@@ -14,11 +14,11 @@ import Categories from '~/modules/Categories';
 import MaisVendidos from '~/modules/MaisVendidos';
 import { Container } from './styles';
 
-export default function Home() {
+export default function Home({ navigation }) {
   return (
     <Container>
       <Banners />
-      <Categories />
+      <Categories navigation={navigation} />
       <MaisVendidos />
     </Container>
   );

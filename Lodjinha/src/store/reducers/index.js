@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
 import gym from './gym';
-import activity from './activity';
+import category from './category';
 
 export default combineReducers({
-
+  category
 });

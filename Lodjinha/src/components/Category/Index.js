@@ -1,31 +1,48 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+
 import { format } from 'date-fns';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useSelector, useDispatch } from 'react-redux';
+
+import * as CategoriesActions from '~/store/actions/category';
 
 //Inicio do componente
-export default function Category({ data }) {
+export default function Category({ data, navigation }) {
+  const dispatch = useDispatch();
+
+  //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
+  handleNavigate = data => {
+    dispatch(CategoriesActions.toggleCategory(data.descricao));
+    console.log(data.descricao);
+    navigation.navigate('Products', { navigation });
+  };
+
   return (
-    <View key={String(data.id)} style={styles.item}>
+    <TouchableOpacity
+      onPress={() => this.handleNavigate(data)}
+      key={String(data.id)}
+      style={styles.item}
+    >
       <Image source={{ uri: data.urlImagem }} style={styles.img} />
       <Text style={styles.description}>{data.descricao}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 //Estilização do componente
 const styles = StyleSheet.create({
   img: {
-    width: '90%',
-    height: '90%'
+    width: '85%',
+    height: '85%'
   },
   item: {
-    width: 100,
+    width: 110,
     height: 100,
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 5,
-    marginTop: 30
+    marginTop: 28
   },
   description: {
     marginTop: 5,

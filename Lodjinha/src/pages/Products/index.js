@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
 
@@ -14,32 +15,36 @@ import {
 import Product from '~/components/Product';
 import api from '~/services/api';
 
-function MaisVendidos() {
+function Products() {
+  const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
-  const [maisvendidos, setMaisVendidos] = useState();
+  const [filtered, setFiltered] = useState();
+  const [list, setList] = useState([]);
 
   //Chama a api para carregar as lista de gyms
-  console.log(maisvendidos);
+
+  async function loadProducts() {
+    const response = await api.get('/produto/');
+    const selectedItem = response.data.data
+      .map(b => ({
+        ...b
+      }))
+      .filter(f => f.categoria.descricao == category);
+    setFiltered(selectedItem);
+  }
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
-    async function loadMaisVendidos() {
-      const response = await api.get('/produto/maisvendidos/');
-      const data = response.data.data.map(b => ({
-        ...b
-      }));
-      setMaisVendidos(data);
-    }
-    loadMaisVendidos();
+    loadProducts();
   }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.text}>Mais vendidos</Text>
+        <Text style={styles.text}>Produtos</Text>
       </View>
       <FlatList
         style={styles.list}
-        data={maisvendidos}
+        data={filtered}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => <Product data={item} />}
       />
@@ -47,7 +52,16 @@ function MaisVendidos() {
   );
 }
 
-export default MaisVendidos;
+export default Products;
+
+Products.navigationOptions = {
+  title: 'Products',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+};
 
 //Estilização do componente
 const styles = StyleSheet.create({

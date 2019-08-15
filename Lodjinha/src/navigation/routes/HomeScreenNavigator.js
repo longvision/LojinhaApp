@@ -1,12 +1,15 @@
 import { createStackNavigator } from 'react-navigation';
 
 import Home from '~/pages/Home';
-// import Banners from '~/modules/Banners'
+import Products from '~/pages/Products';
 
 const HomeScreenNavigator = createStackNavigator(
   {
     Home: {
       screen: Home
+    },
+    Products: {
+      screen: Products
     }
   },
   {

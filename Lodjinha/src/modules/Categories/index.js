@@ -14,7 +14,7 @@ import {
 import Category from '~/components/Category';
 import api from '~/services/api';
 
-function Categories() {
+function Categories({ navigation }) {
   //Estado local: gyms
   const [categories, setCategories] = useState();
 
@@ -38,11 +38,12 @@ function Categories() {
         <Text style={styles.text}>Categorias</Text>
       </View>
       <FlatList
-        style={styles.list}
         data={categories}
         horizontal={true}
         keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => <Category data={item} />}
+        renderItem={({ item }) => (
+          <Category data={item} navigation={navigation} />
+        )}
       />
     </View>
   );
@@ -55,9 +56,7 @@ const styles = StyleSheet.create({
   container: {
     height: 180
   },
-  list: {
-    marginTop: 1
-  },
+
   ban: {
     flex: 1,
     flexDirection: 'column'
@@ -69,9 +68,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#c4c4c4',
-    width: '100%',
-    height: 30,
-    marginTop: 10
+    width: '100%'
   },
   text: {
     fontSize: 17,
