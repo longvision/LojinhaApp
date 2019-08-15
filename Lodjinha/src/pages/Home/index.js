@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 
 import Banners from '~/modules/Banners';
+import Categories from '~/modules/Categories';
 import { Container } from './styles';
 
 export default function Home() {
   return (
     <Container>
       <Banners />
+      <Categories />
     </Container>
   );
 }
