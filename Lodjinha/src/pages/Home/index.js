@@ -19,7 +19,7 @@ export default function Home({ navigation }) {
     <Container>
       <Banners />
       <Categories navigation={navigation} />
-      <MaisVendidos />
+      <MaisVendidos navigation={navigation} />
     </Container>
   );
 }

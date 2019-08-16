@@ -4,7 +4,7 @@ import Home from '~/pages/Home';
 import FilteredProducts from '~/pages/FilteredProducts';
 import Details from '~/pages/Details';
 
-const HomeScreenNavigator = createStackNavigator(
+const DetailsScreenNavigator = createStackNavigator(
   {
     Home: {
       screen: Home
@@ -24,4 +24,4 @@ const HomeScreenNavigator = createStackNavigator(
   }
 );
 
-export default HomeScreenNavigator;
+export default DetailsScreenNavigator;

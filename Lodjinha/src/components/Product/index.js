@@ -1,23 +1,37 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { format } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
+
+import * as ProductActions from '~/store/actions/product';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 //Inicio do componente
 export default function Product({ data, navigation }) {
+  //Estado proveniente da Store
+  const dispatch = useDispatch();
+  //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
+  handleNavigate = () => {
+    dispatch(ProductActions.toggleProduct(data));
+    console.log(data);
+    navigation.navigate('Details', { navigation });
+  };
+
   return (
-    <View key={String(data.id)} style={styles.item}>
-      <Image source={{ uri: data.urlImagem }} style={styles.img} />
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <Text style={styles.nome}>{`${data.nome}: ${data.descricao.substring(
-          0,
-          25
-        )}...`}</Text>
-        <View style={styles.detalhes}>
-          <Text style={styles.precoDe}>De: {data.precoDe}</Text>
-          <Text style={styles.precoPor}>Por: {data.precoPor}</Text>
+    <TouchableOpacity onPress={this.handleNavigate}>
+      <View key={String(data.id)} style={styles.item}>
+        <Image source={{ uri: data.urlImagem }} style={styles.img} />
+        <View style={{ flex: 1, flexDirection: 'column' }}>
+          <Text style={styles.nome}>{`${data.nome}: ${data.descricao.substring(
+            0,
+            25
+          )}...`}</Text>
+          <View style={styles.detalhes}>
+            <Text style={styles.precoDe}>De: {data.precoDe}</Text>
+            <Text style={styles.precoPor}>Por: {data.precoPor}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 //Estilização do componente
@@ -31,7 +45,7 @@ const styles = StyleSheet.create({
   item: {
     width: 'auto',
     height: 103,
-
+    paddingTop: 20,
     flex: 1,
     flexDirection: 'row'
   },

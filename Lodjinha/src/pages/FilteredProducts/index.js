@@ -13,13 +13,13 @@ import {
 } from 'react-native';
 
 import Product from '~/components/Product';
+import { Container } from './styles';
 import api from '~/services/api';
 
-function Products() {
+function FilteredProducts({ navigation }) {
   const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
   const [filtered, setFiltered] = useState();
-  const [list, setList] = useState([]);
 
   //Chama a api para carregar as lista de gyms
 
@@ -38,24 +38,28 @@ function Products() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Text style={styles.text}>Produtos</Text>
+    <Container>
+      <View style={styles.container}>
+        <View style={styles.title}>
+          <Text style={styles.text}>Produtos</Text>
+        </View>
+        <FlatList
+          style={styles.list}
+          data={filtered}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <Product data={item} navigation={navigation} />
+          )}
+        />
       </View>
-      <FlatList
-        style={styles.list}
-        data={filtered}
-        keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => <Product data={item} />}
-      />
-    </View>
+    </Container>
   );
 }
 
-export default Products;
+export default FilteredProducts;
 
-Products.navigationOptions = {
-  title: 'Products',
+FilteredProducts.navigationOptions = {
+  title: 'FilteredPoducts',
   headerStyle: {
     backgroundColor: '#48285b',
     marginTop: 0
@@ -66,7 +70,8 @@ Products.navigationOptions = {
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    height: 450
+    height: 'auto',
+    paddingTop: 50
   },
   list: {
     marginTop: 2

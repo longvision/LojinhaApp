@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
 
@@ -12,49 +13,58 @@ import {
 } from 'react-native';
 
 import Product from '~/components/Product';
+import { Container } from './styles';
 import api from '~/services/api';
 
-function MaisVendidos({ navigation }) {
+function Details({ navigation }) {
+  const productId = useSelector(state => state.product.selectedProduct.id);
   //Estado local: gyms
-  const [maisvendidos, setMaisVendidos] = useState();
+  const [detail, setDetail] = useState([]);
 
   //Chama a api para carregar as lista de gyms
-  console.log(maisvendidos);
+
+  async function loadDetails() {
+    const response = await api.get(`/produto/${productId}`);
+    setDetail(response);
+  }
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
-    async function loadMaisVendidos() {
-      const response = await api.get('/produto/maisvendidos/');
-      const data = response.data.data.map(b => ({
-        ...b
-      }));
-      setMaisVendidos(data);
-    }
-    loadMaisVendidos();
+    loadDetails();
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Text style={styles.text}>Mais vendidos</Text>
+    <Container>
+      <View style={styles.container}>
+        <View style={styles.title}>
+          <Text style={styles.text}>Detalhes</Text>
+        </View>
+        <View>
+          <Text>{detail.nome}</Text>
+          <Text>{detail.precoDe}</Text>
+          <Text>{detail.precoPor}</Text>
+          <Text>{detail.descricao}</Text>
+        </View>
       </View>
-      <FlatList
-        style={styles.list}
-        data={maisvendidos}
-        keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => (
-          <Product data={item} navigation={navigation} />
-        )}
-      />
-    </View>
+    </Container>
   );
 }
 
-export default MaisVendidos;
+export default Details;
+
+Details.navigationOptions = {
+  title: 'Details',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+};
 
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    height: 450
+    height: 'auto',
+    paddingTop: 50
   },
   list: {
     marginTop: 2

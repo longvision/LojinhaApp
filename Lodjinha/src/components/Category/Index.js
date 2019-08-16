@@ -12,15 +12,15 @@ export default function Category({ data, navigation }) {
   const dispatch = useDispatch();
 
   //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
-  handleNavigate = data => {
+  handleNavigate = () => {
     dispatch(CategoriesActions.toggleCategory(data.descricao));
     console.log(data.descricao);
-    navigation.navigate('Products', { navigation });
+    navigation.navigate('FilteredProducts', { navigation });
   };
 
   return (
     <TouchableOpacity
-      onPress={() => this.handleNavigate(data)}
+      onPress={this.handleNavigate}
       key={String(data.id)}
       style={styles.item}
     >
