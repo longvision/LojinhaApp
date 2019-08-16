@@ -22,7 +22,6 @@ function FilteredProducts({ navigation }) {
   const [filtered, setFiltered] = useState();
 
   //Chama a api para carregar as lista de gyms
-
   async function loadProducts() {
     const response = await api.get('/produto/');
     const selectedItem = response.data.data

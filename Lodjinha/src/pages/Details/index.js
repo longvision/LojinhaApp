@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import HTML from 'react-native-render-html';
 import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
 
 import {
   View,
   Text,
   FlatList,
+  Image,
   StyleSheet,
   Platform,
+  ScrollView,
   Dimensions
 } from 'react-native';
 
@@ -25,25 +27,33 @@ function Details({ navigation }) {
 
   async function loadDetails() {
     const response = await api.get(`/produto/${productId}`);
-    setDetail(response);
+    setDetail(response.data);
+    console.log(detail);
   }
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
     loadDetails();
   }, []);
 
+  const htmlContent = `${detail.descricao}`;
   return (
     <Container>
       <View style={styles.container}>
+        <View style={styles.imageCtr}>
+          <Image source={{ uri: `${detail.urlImagem}` }} style={styles.image} />
+        </View>
+
+        <Text style={styles.name}>{detail.nome}</Text>
         <View style={styles.title}>
-          <Text style={styles.text}>Detalhes</Text>
+          <Text style={styles.precoDe}>{detail.precoDe}</Text>
+          <Text style={styles.precoPor}>{detail.precoPor}</Text>
         </View>
-        <View>
-          <Text>{detail.nome}</Text>
-          <Text>{detail.precoDe}</Text>
-          <Text>{detail.precoPor}</Text>
-          <Text>{detail.descricao}</Text>
-        </View>
+        <ScrollView style={{ flex: 1, padding: 15 }}>
+          <HTML
+            html={htmlContent}
+            imagesMaxWidth={Dimensions.get('window').width}
+          />
+        </ScrollView>
       </View>
     </Container>
   );
@@ -63,15 +73,22 @@ Details.navigationOptions = {
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    height: 'auto',
-    paddingTop: 50
-  },
-  list: {
-    marginTop: 2
-  },
-  ban: {
     flex: 1,
     flexDirection: 'column'
+  },
+  image: {
+    height: 200,
+    width: 200
+  },
+  imageCtr: {
+    height: 300,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  name: {
+    marginLeft: 15,
+    fontSize: 17,
+    marginBottom: 10
   },
   title: {
     fontSize: 20,
@@ -82,12 +99,24 @@ const styles = StyleSheet.create({
     borderBottomColor: '#c4c4c4',
     borderTopWidth: 1,
     borderTopColor: '#c4c4c4',
-    width: '100%'
+    width: '100%',
+    flexDirection: 'row',
+    height: 40,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15
   },
-  text: {
+  precoDe: {
+    color: '#c4c4c4',
+    fontSize: 15
+  },
+  precoPor: {
+    color: 'red',
+    fontSize: 22,
+    marginRight: 20
+  },
+  descricao: {
     fontSize: 17,
-    paddingLeft: 7,
-    paddingTop: 10,
-    paddingBottom: 10
+    padding: 15
   }
 });
