@@ -61,6 +61,15 @@ function Details({ navigation }) {
         })
         .catch(err => {
           setResponse('Erro de Reserva');
+          showMessage({
+            message: 'Ops, algo deu errado...',
+            description: 'Tente novamente',
+            type: 'warning',
+            autoHide: false,
+            backgroundColor: '#f15025', // background color
+            color: '#fcfcfc', // text color,
+            onPress: () => navigation.goBack()
+          });
         });
     }
   }, [reserve]);

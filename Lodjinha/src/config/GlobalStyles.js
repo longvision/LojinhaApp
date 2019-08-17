@@ -31,7 +31,7 @@ const GlobalStyles = StyleSheet.create({
   logoSobre: {
     fontFamily: 'Pacifico-Regular',
     fontSize: 64,
-    color: '#fff',
+    color: '#2d3142',
     letterSpacing: -1.5
   },
   precoPor: {
@@ -60,7 +60,7 @@ const GlobalStyles = StyleSheet.create({
   nomeDesenvolvedor: {
     fontFamily: 'Roboto-Medium',
     fontSize: 14,
-    color: '#fff',
+    color: '#2d3142',
     letterSpacing: -0.3
   },
   nomeCategoria: {
@@ -77,7 +77,7 @@ const GlobalStyles = StyleSheet.create({
   dataDesenvolvimento: {
     fontFamily: 'Roboto-Light',
     fontSize: 12,
-    color: '#fff',
+    color: '#2d3142',
     letterSpacing: -0.3
   }
 });

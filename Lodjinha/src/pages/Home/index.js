@@ -46,6 +46,7 @@ export default function Home({ navigation }) {
 
 Home.navigationOptions = {
   title: 'Home',
+  drawerLabel: 'Home',
   headerStyle: {
     backgroundColor: '#48285b',
     marginTop: 0
