@@ -10,12 +10,16 @@ import * as CategoriesActions from '~/store/actions/category';
 //Inicio do componente
 export default function Category({ data, navigation }) {
   const dispatch = useDispatch();
-
+  const title = useSelector(state => state.category.selectedCategory.descricao);
   //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
-  handleNavigate = () => {
-    dispatch(CategoriesActions.toggleCategory(data.descricao));
-    console.log(data.descricao);
-    navigation.navigate('FilteredProducts', { navigation });
+  handleNavigate = async () => {
+    await dispatch(CategoriesActions.toggleCategory(data.descricao));
+
+    navigation.navigate('FilteredProducts', {
+      navigation,
+      title
+    });
+    console.log(title);
   };
 
   return (
@@ -32,17 +36,19 @@ export default function Category({ data, navigation }) {
 //Estilização do componente
 const styles = StyleSheet.create({
   img: {
-    width: '85%',
-    height: '85%'
+    width: 95,
+    height: 95,
+    marginTop: 4
   },
   item: {
     width: 110,
-    height: 100,
+    height: 110,
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 28
+    paddingTop: 28,
+    marginHorizontal: 8
   },
   description: {
     marginTop: 5,

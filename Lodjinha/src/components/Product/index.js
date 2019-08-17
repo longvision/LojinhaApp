@@ -37,8 +37,8 @@ export default function Product({ data, navigation }) {
 //Estilização do componente
 const styles = StyleSheet.create({
   img: {
-    width: 100,
-    height: 100,
+    width: 50,
+    height: 50,
     paddingVertical: 25,
     marginBottom: 10
   },

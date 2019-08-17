@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import HTML from 'react-native-render-html';
-import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
+import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
+import { FAB, Portal, Provider } from 'react-native-paper';
 
 import {
   View,
+  Alert,
   Text,
   FlatList,
   Image,
@@ -14,23 +16,50 @@ import {
   Dimensions
 } from 'react-native';
 
+import Header from '~/components/Header';
+import FlashMessage from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import Product from '~/components/Product';
 import { Container } from './styles';
 import api from '~/services/api';
 
 function Details({ navigation }) {
   const productId = useSelector(state => state.product.selectedProduct.id);
+
   //Estado local: gyms
   const [detail, setDetail] = useState([]);
+  const [reserve, setReserve] = useState(false);
+  const [response, setResponse] = useState();
 
   //Chama a api para carregar as lista de gyms
 
   async function loadDetails() {
     const response = await api.get(`/produto/${productId}`);
     setDetail(response.data);
-    console.log(detail);
   }
-  //Hook semelhante ao 'componentDidMount', para carregar as gyms
+
+  useEffect(() => {
+    if (reserve === true) {
+      api
+        .post(`/produto/${productId}`)
+        .then(async res => {
+          setResponse(res.data);
+
+          showMessage({
+            message: 'Reservado com sucesso',
+            type: 'info'
+          });
+          setTimeout(() => {
+            navigation.goBack();
+          }, 2500);
+        })
+        .catch(err => {
+          setResponse('Erro de Reserva');
+        });
+    }
+  }, [reserve]);
+
+  //Hook semelhante ao 'componentDidMount', para carregar os detalhes
   useEffect(() => {
     loadDetails();
   }, []);
@@ -55,6 +84,15 @@ function Details({ navigation }) {
           />
         </ScrollView>
       </View>
+
+      <FAB
+        style={styles.fab}
+        icon={reserve ? 'check' : 'add'}
+        onPress={() => {
+          setReserve(true);
+        }}
+      />
+      <FlashMessage position="top" />
     </Container>
   );
 }
@@ -84,6 +122,12 @@ const styles = StyleSheet.create({
     height: 300,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0
   },
   name: {
     marginLeft: 15,

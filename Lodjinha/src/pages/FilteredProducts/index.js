@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
+import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
 
 import {
   View,
@@ -13,10 +13,12 @@ import {
 } from 'react-native';
 
 import Product from '~/components/Product';
+import Header from '~/components/Header';
 import { Container } from './styles';
 import api from '~/services/api';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
-function FilteredProducts({ navigation }) {
+function FilteredProducts({ navigation, title }) {
   const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
   const [filtered, setFiltered] = useState();
@@ -28,7 +30,8 @@ function FilteredProducts({ navigation }) {
       .map(b => ({
         ...b
       }))
-      .filter(f => f.categoria.descricao == category);
+      .filter(f => f.categoria.descricao == category)
+      .slice(0, 20);
     setFiltered(selectedItem);
   }
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
@@ -38,19 +41,19 @@ function FilteredProducts({ navigation }) {
 
   return (
     <Container>
-      <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={styles.text}>Produtos</Text>
-        </View>
-        <FlatList
-          style={styles.list}
-          data={filtered}
-          keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => (
-            <Product data={item} navigation={navigation} />
-          )}
-        />
+      <Header navigation={navigation} title={title} />
+      <View style={styles.title}>
+        <Text style={styles.text}>Produtos</Text>
       </View>
+      <FlatList
+        style={styles.list}
+        data={filtered}
+        keyExtractor={item => String(item.id)}
+        initialNumToRender={20}
+        renderItem={({ item }) => (
+          <Product data={item} navigation={navigation} />
+        )}
+      />
     </Container>
   );
 }
@@ -68,10 +71,6 @@ FilteredProducts.navigationOptions = {
 
 //Estilização do componente
 const styles = StyleSheet.create({
-  container: {
-    height: 'auto',
-    paddingTop: 50
-  },
   list: {
     marginTop: 2
   },

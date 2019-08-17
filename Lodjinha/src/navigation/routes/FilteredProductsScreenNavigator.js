@@ -1,4 +1,4 @@
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import Home from '~/pages/Home';
 import FilteredProducts from '~/pages/FilteredProducts';

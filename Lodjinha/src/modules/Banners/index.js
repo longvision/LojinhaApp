@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
+import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
 
 import {
   View,
@@ -19,6 +19,7 @@ import api from '~/services/api';
 function Banners() {
   //Estado local: gyms
   const [banner, setBanner] = useState();
+
   //Estilo dos banners
   const BannerWidth = Dimensions.get('window').width;
   const BannerHeight = 260;

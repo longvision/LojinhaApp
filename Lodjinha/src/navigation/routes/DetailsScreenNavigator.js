@@ -1,10 +1,10 @@
-import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 
 import Home from '~/pages/Home';
 import FilteredProducts from '~/pages/FilteredProducts';
 import Details from '~/pages/Details';
 
-const DetailsScreenNavigator = createStackNavigator(
+const DetailsScreenNavigator = createSwitchNavigator(
   {
     Home: {
       screen: Home

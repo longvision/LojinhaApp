@@ -19,7 +19,7 @@ import HomeScreenNavigator from '~/navigation/routes/HomeScreenNavigator';
 import FilteredProductsScreenNavigator from '~/navigation/routes/FilteredProductsScreenNavigator';
 import DetailsScreenNavigator from '~/navigation/routes/DetailsScreenNavigator';
 import { ScrollView } from 'react-native-gesture-handler';
-import bg from '~/assets/imagens/drawable-xxxhdpi/menu_pattern.png';
+import bg from '~/assets/Images/drawable-xxxhdpi/menu_pattern.png';
 
 const CustomDrawerComponent = props => (
   <SafeAreaView style={{ flex: 1, backgroundColor: '#48285b' }}>
@@ -37,10 +37,10 @@ const MainDrawerNavigator = createDrawerNavigator(
   {
     Home: {
       screen: HomeScreenNavigator
-    },
-    FilteredProducts: {
-      screen: FilteredProductsScreenNavigator
     }
+    // FilteredProducts: {
+    //   screen: FilteredProductsScreenNavigator
+    // }
   },
   {
     contentComponent: CustomDrawerComponent,

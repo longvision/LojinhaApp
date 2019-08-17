@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
-
 import {
   View,
   Text,
@@ -54,10 +52,11 @@ export default MaisVendidos;
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    height: 450
+    height: '100%'
   },
   list: {
-    marginTop: 2
+    // marginTop: 0,
+    // paddingBottom: 50
   },
   ban: {
     flex: 1,

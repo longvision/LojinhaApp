@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
-import logo from '~/assets/imagens/drawable-xxxhdpi/logo_navbar.png';
-
 import {
+  ActivityIndicator,
   View,
   Text,
   FlatList,
@@ -14,9 +13,10 @@ import {
 import Category from '~/components/Category';
 import api from '~/services/api';
 
-function Categories({ navigation }) {
+function Categories({ navigation, title }) {
   //Estado local: gyms
   const [categories, setCategories] = useState();
+  const [loading, setLoading] = useState(true);
 
   // console.log(categories);
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
@@ -24,10 +24,11 @@ function Categories({ navigation }) {
     //Chama a api para carregar as lista de gyms
     async function loadCategories() {
       const response = await api.get('/categoria/');
-      const data = response.data.data.map(b => ({
+      const data = await response.data.data.map(b => ({
         ...b
       }));
       setCategories(data);
+      setLoading(false);
     }
     loadCategories();
   }, []);
@@ -37,14 +38,20 @@ function Categories({ navigation }) {
       <View style={styles.title}>
         <Text style={styles.text}>Categorias</Text>
       </View>
-      <FlatList
-        data={categories}
-        horizontal={true}
-        keyExtractor={item => String(item.id)}
-        renderItem={({ item }) => (
-          <Category data={item} navigation={navigation} />
-        )}
-      />
+      {loading ? (
+        <View style={styles.activity}>
+          <ActivityIndicator size="large" color="#c4c4c4" />
+        </View>
+      ) : (
+        <FlatList
+          data={categories}
+          horizontal={true}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <Category data={item} navigation={navigation} />
+          )}
+        />
+      )}
     </View>
   );
 }
@@ -56,7 +63,10 @@ const styles = StyleSheet.create({
   container: {
     height: 180
   },
-
+  activity: {
+    flex: 1,
+    justifyContent: 'center'
+  },
   ban: {
     flex: 1,
     flexDirection: 'column'
