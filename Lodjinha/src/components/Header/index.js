@@ -28,7 +28,10 @@ function Header({ navigation, item }) {
         <Icon name="arrow-back" size={24} color="#fff" />
       </TouchableOpacity>
       <Text
-        style={[GlobalStyles.descricaoProdutoBold, { marginLeft: 15 }]}
+        style={[
+          GlobalStyles.descricaoProdutoBold,
+          { marginLeft: 15, color: '#fff' }
+        ]}
       >{`${item}`}</Text>
     </View>
   );

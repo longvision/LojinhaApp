@@ -18,7 +18,7 @@ import {
 import Banners from '~/modules/Banners';
 import Categories from '~/modules/Categories';
 import MaisVendidos from '~/modules/MaisVendidos';
-import { Container, HeaderLogo } from './styles';
+import { Container, Header } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import globals from '~/config/GlobalStyles';
@@ -28,13 +28,13 @@ console.disableYellowBox = true;
 export default function Home({ navigation }) {
   return (
     <Container>
-      <View style={styles.container}>
+      <Header style={styles.container}>
         <TouchableOpacity style={styles.menu} onPress={navigation.openDrawer}>
           <Icon name="menu" size={24} color="#fff" />
         </TouchableOpacity>
         <Image source={logo_navbar} style={styles.logoNav} />
         <Text style={globals.logoMenu}>a Lodjinha</Text>
-      </View>
+      </Header>
       <ScrollView style={styles.scroll}>
         <Banners />
         <Categories navigation={navigation} />
@@ -43,12 +43,20 @@ export default function Home({ navigation }) {
     </Container>
   );
 }
+
+Home.navigationOptions = {
+  title: 'Home',
+  headerStyle: {
+    backgroundColor: '#48285b',
+    marginTop: 0
+  },
+  headerTintColor: '#fff'
+};
+
 const styles = StyleSheet.create({
   container: {
-    // height: 60,
-    // marginBottom: 50,
+    height: 65,
     backgroundColor: '#5e2a84',
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center'

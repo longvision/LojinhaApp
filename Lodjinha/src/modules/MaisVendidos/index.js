@@ -11,7 +11,7 @@ import {
 
 import Product from '~/components/Product';
 import api from '~/services/api';
-
+import GlobalStyles from '~/config/GlobalStyles';
 function MaisVendidos({ navigation }) {
   //Estado local: gyms
   const [maisvendidos, setMaisVendidos] = useState();
@@ -33,7 +33,9 @@ function MaisVendidos({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.text}>Mais vendidos</Text>
+        <Text style={[GlobalStyles.descricaoProdutoBold, { padding: 8 }]}>
+          Mais vendidos
+        </Text>
       </View>
       <FlatList
         style={styles.list}

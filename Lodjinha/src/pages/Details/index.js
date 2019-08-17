@@ -15,13 +15,18 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
-
+import {
+  TouchableHighlight,
+  TouchableOpacity
+} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Header from '~/components/Header';
 import FlashMessage from 'react-native-flash-message';
 import { showMessage } from 'react-native-flash-message';
 import Product from '~/components/Product';
 import { Container } from './styles';
 import api from '~/services/api';
+import GlobalStyles from '~/config/GlobalStyles';
 
 function Details({ navigation }) {
   const productId = useSelector(state => state.product.selectedProduct.id);
@@ -44,14 +49,15 @@ function Details({ navigation }) {
         .post(`/produto/${productId}`)
         .then(async res => {
           setResponse(res.data);
-
           showMessage({
             message: 'Reservado com sucesso',
-            type: 'info'
+            description: 'Continuar comprando?',
+            type: 'default',
+            autoHide: false,
+            backgroundColor: '#5e2a84', // background color
+            color: '#fcfcfc', // text color,
+            onPress: () => navigation.goBack()
           });
-          setTimeout(() => {
-            navigation.goBack();
-          }, 3500);
         })
         .catch(err => {
           setResponse('Erro de Reserva');
@@ -67,21 +73,37 @@ function Details({ navigation }) {
   const htmlContent = `${detail.descricao}`;
   return (
     <Container>
-      <View style={styles.container}>
-        <View style={styles.imageCtr}>
-          <Image source={{ uri: `${detail.urlImagem}` }} style={styles.image} />
-        </View>
+      <TouchableOpacity style={styles.btn} onPress={navigation.goBack}>
+        <Icon name="arrow-back" size={24} color="#4a4a4a" />
+      </TouchableOpacity>
 
-        <Text style={styles.name}>{detail.nome}</Text>
-        <View style={styles.title}>
-          <Text style={styles.precoDe}>{detail.precoDe}</Text>
-          <Text style={styles.precoPor}>{detail.precoPor}</Text>
-        </View>
+      <View style={styles.container}>
         <ScrollView style={{ flex: 1, padding: 15 }}>
-          <HTML
-            html={htmlContent}
-            imagesMaxWidth={Dimensions.get('window').width}
-          />
+          <View style={styles.imageCtr}>
+            <Image
+              source={{ uri: `${detail.urlImagem}` }}
+              style={styles.image}
+            />
+          </View>
+
+          <Text style={styles.name}>{detail.nome}</Text>
+          <View style={styles.title}>
+            <Text style={GlobalStyles.precoDe}>De: {detail.precoDe}</Text>
+            <Text style={GlobalStyles.precoPor}>Por: {detail.precoPor}</Text>
+          </View>
+          <View>
+            <Text style={[GlobalStyles.descricaoProdutoBold, { margin: 15 }]}>
+              {htmlContent
+                .split(' ')
+                .slice(0, 2)
+                .join(' ')}
+            </Text>
+            <HTML
+              style={[GlobalStyles.descricaoProduto, { margin: 15 }]}
+              html={htmlContent}
+              imagesMaxWidth={Dimensions.get('window').width}
+            />
+          </View>
         </ScrollView>
       </View>
 
@@ -92,7 +114,7 @@ function Details({ navigation }) {
           setReserve(true);
         }}
       />
-      <FlashMessage position="top" />
+      <FlashMessage position="center" duration={3500} />
     </Container>
   );
 }
@@ -113,6 +135,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column'
+  },
+
+  btn: {
+    padding: 15
   },
   image: {
     height: 200,

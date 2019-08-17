@@ -43,13 +43,12 @@ const GlobalStyles = StyleSheet.create({
   descricaoProduto: {
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
-    color: '#fff',
     color: '#2d3142'
   },
   descricaoProdutoBold: {
     fontFamily: 'Roboto-Bold',
     fontSize: 17,
-    color: '#fff',
+    color: '#2d3142',
     letterSpacing: -0.4
   },
   menuItem: {
@@ -67,7 +66,7 @@ const GlobalStyles = StyleSheet.create({
   nomeCategoria: {
     fontFamily: 'Roboto-Regular',
     fontSize: 13,
-    color: '#fff'
+    color: '#4a4a4a'
   },
   precoDe: {
     fontFamily: 'Roboto-Medium',

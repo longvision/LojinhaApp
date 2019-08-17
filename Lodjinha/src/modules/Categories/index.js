@@ -9,7 +9,7 @@ import {
   Platform,
   Dimensions
 } from 'react-native';
-
+import GlobalStyles from '~/config/GlobalStyles';
 import Category from '~/components/Category';
 import api from '~/services/api';
 
@@ -36,7 +36,9 @@ function Categories({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text style={styles.text}>Categorias</Text>
+        <Text style={[GlobalStyles.descricaoProdutoBold, { padding: 8 }]}>
+          Categorias
+        </Text>
       </View>
       {loading ? (
         <View style={styles.activity}>

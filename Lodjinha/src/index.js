@@ -8,20 +8,20 @@ import store from '~/store';
 import RootNavigation from '~/navigation/RootNavigation';
 
 //Tema central da estilização do React-Native Paper
-// const theme = {
-//   ...DefaultTheme,
-//   colors: {
-//     ...DefaultTheme.color,
-//     primary: '#48285b',
-//     accent: '#fee166'
-//   }
-// };
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.color,
+    primary: '#fcfcfc',
+    accent: '#5e2a84'
+  }
+};
 
 //Ponto de entrada da aplicação
 export default function App() {
   return (
     <Provider store={store}>
-      <PaperProvider>
+      <PaperProvider theme={theme}>
         <RootNavigation />
       </PaperProvider>
     </Provider>

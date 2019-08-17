@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 
 import * as CategoriesActions from '~/store/actions/category';
-
+import GlobalStyles from '~/config/GlobalStyles';
 //Inicio do componente
 export default function Category({ data, navigation }) {
   const dispatch = useDispatch();
@@ -25,7 +25,11 @@ export default function Category({ data, navigation }) {
       style={styles.item}
     >
       <Image source={{ uri: data.urlImagem }} style={styles.img} />
-      <Text style={styles.description}>{data.descricao}</Text>
+      <Text
+        style={[GlobalStyles.nomeCategoria, { marginTop: 5, marginBottom: 30 }]}
+      >
+        {data.descricao}
+      </Text>
     </TouchableOpacity>
   );
 }

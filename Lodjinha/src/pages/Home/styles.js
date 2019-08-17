@@ -7,3 +7,10 @@ export const Container = styled.View.attrs({
   flex: 1;
   background-color: #fff;
 `;
+export const Header = styled.View`
+  height: 65;
+  background-color: #5e2a84;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
