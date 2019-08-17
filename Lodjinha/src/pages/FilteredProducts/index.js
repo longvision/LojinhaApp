@@ -18,7 +18,7 @@ import { Container } from './styles';
 import api from '~/services/api';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-function FilteredProducts({ navigation, title }) {
+function FilteredProducts({ navigation }) {
   const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
   const [filtered, setFiltered] = useState();
@@ -37,19 +37,15 @@ function FilteredProducts({ navigation, title }) {
   //Hook semelhante ao 'componentDidMount', para carregar as gyms
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [category]);
 
   return (
     <Container>
-      <Header navigation={navigation} title={title} />
-      <View style={styles.title}>
-        <Text style={styles.text}>Produtos</Text>
-      </View>
+      <Header navigation={navigation} item={category} />
       <FlatList
         style={styles.list}
         data={filtered}
         keyExtractor={item => String(item.id)}
-        initialNumToRender={20}
         renderItem={({ item }) => (
           <Product data={item} navigation={navigation} />
         )}

@@ -7,22 +7,29 @@ import {
   StyleSheet,
   Platform,
   Dimensions
+  // TouchableOpacity
 } from 'react-native';
-
+import { useSelector } from 'react-redux';
 import {
   TouchableHighlight,
   TouchableOpacity
 } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import globals from '~/config/GlobalStyles';
+import GlobalStyles from '~/config/GlobalStyles';
+// import category from 'src/store/reducers/category';
 
-function Header({ navigation, title }) {
+function Header({ navigation, item }) {
+  // const item = useSelector(state => state.category.selectedCategory);
+
+  // useEffect(() => {}, [item]);
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.btn} onPress={navigation.goBack}>
         <Icon name="arrow-back" size={24} color="#fff" />
       </TouchableOpacity>
-      <Text style={globals.nomeCategoria}>{title}</Text>
+      <Text
+        style={[GlobalStyles.descricaoProdutoBold, { marginLeft: 15 }]}
+      >{`${item}`}</Text>
     </View>
   );
 }
@@ -42,5 +49,8 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     marginLeft: 15
+  },
+  menu: {
+    paddingLeft: 15
   }
 });

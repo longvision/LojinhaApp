@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export default (globals = StyleSheet.create({
+const GlobalStyles = StyleSheet.create({
   warmPurple: {
     color: '#5e2e84'
   },
@@ -37,13 +37,14 @@ export default (globals = StyleSheet.create({
   precoPor: {
     fontFamily: 'Roboto-Bold',
     fontSize: 20,
-    color: '#fff',
-    fontWeight: '600'
+    color: '#f15025',
+    fontWeight: 'bold'
   },
   descricaoProduto: {
     fontFamily: 'Roboto-Medium',
     fontSize: 18,
-    color: '#fff'
+    color: '#fff',
+    color: '#2d3142'
   },
   descricaoProdutoBold: {
     fontFamily: 'Roboto-Bold',
@@ -71,7 +72,8 @@ export default (globals = StyleSheet.create({
   precoDe: {
     fontFamily: 'Roboto-Medium',
     fontSize: 12,
-    color: '#fff'
+    color: '#aaaaaa',
+    textDecorationLine: 'line-through'
   },
   dataDesenvolvimento: {
     fontFamily: 'Roboto-Light',
@@ -79,4 +81,6 @@ export default (globals = StyleSheet.create({
     color: '#fff',
     letterSpacing: -0.3
   }
-}));
+});
+
+export default GlobalStyles;

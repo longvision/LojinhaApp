@@ -51,7 +51,7 @@ function Details({ navigation }) {
           });
           setTimeout(() => {
             navigation.goBack();
-          }, 2500);
+          }, 3500);
         })
         .catch(err => {
           setResponse('Erro de Reserva');

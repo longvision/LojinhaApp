@@ -1,7 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import { format } from 'date-fns';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,21 +9,18 @@ import * as CategoriesActions from '~/store/actions/category';
 //Inicio do componente
 export default function Category({ data, navigation }) {
   const dispatch = useDispatch();
-  const title = useSelector(state => state.category.selectedCategory.descricao);
-  //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
-  handleNavigate = async () => {
-    await dispatch(CategoriesActions.toggleCategory(data.descricao));
 
+  //Navegação e disparo de ação para selecionar a atividade desejada e enviar ao reducer.
+  handleToggle = () => {
+    dispatch(CategoriesActions.toggleCategory(data.descricao));
     navigation.navigate('FilteredProducts', {
-      navigation,
-      title
+      navigation
     });
-    console.log(title);
   };
 
   return (
     <TouchableOpacity
-      onPress={this.handleNavigate}
+      onPress={this.handleToggle}
       key={String(data.id)}
       style={styles.item}
     >

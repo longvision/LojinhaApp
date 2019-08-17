@@ -13,7 +13,7 @@ import {
 import Category from '~/components/Category';
 import api from '~/services/api';
 
-function Categories({ navigation, title }) {
+function Categories({ navigation }) {
   //Estado local: gyms
   const [categories, setCategories] = useState();
   const [loading, setLoading] = useState(true);

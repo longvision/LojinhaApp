@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   },
   list: {
     // marginTop: 0,
-    // paddingBottom: 50
   },
   ban: {
     flex: 1,
