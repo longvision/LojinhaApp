@@ -64,7 +64,7 @@ export default Banners;
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    marginTop: Platform.OS === 'ios' ? 34 : 0
+    // marginTop: Platform.OS === 'ios' ? 34 : 0
   },
   list: {
     marginTop: 15

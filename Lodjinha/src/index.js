@@ -2,8 +2,9 @@ import React from 'react';
 import '~/config/ReactotronConfig';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { Provider } from 'react-redux';
-
+import { StatusBar } from 'react-native';
 import store from '~/store';
+import GeneralStatusBarColor from '~/components/GeneralStatusBarColor';
 
 import RootNavigation from '~/navigation/RootNavigation';
 
@@ -22,6 +23,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <PaperProvider theme={theme}>
+        <GeneralStatusBarColor
+          barStyle="light-content"
+          backgroundColor="#5e2a84"
+        />
         <RootNavigation />
       </PaperProvider>
     </Provider>

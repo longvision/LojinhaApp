@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import Home from '~/pages/Home';
 import FilteredProducts from '~/pages/FilteredProducts';
 import Details from '~/pages/Details';
+import About from '~/pages/About';
 
 const FilteredProductsScreenNavigator = createStackNavigator(
   {
@@ -14,6 +15,9 @@ const FilteredProductsScreenNavigator = createStackNavigator(
     },
     Details: {
       screen: Details
+    },
+    About: {
+      screen: About
     }
   },
   {

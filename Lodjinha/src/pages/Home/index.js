@@ -3,10 +3,8 @@ import {
   Text,
   Image,
   StyleSheet,
-  Dimensions,
-  ImageBackground,
   StatusBar,
-  View,
+  Platform,
   ScrollView
 } from 'react-native';
 
@@ -15,11 +13,14 @@ import {
   TouchableOpacity
 } from 'react-native-gesture-handler';
 // import HomeHeader from '~/components/HomeHeader';
+
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Banners from '~/modules/Banners';
 import Categories from '~/modules/Categories';
 import MaisVendidos from '~/modules/MaisVendidos';
 import { Container, Header } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import metrics from '~/config/metrics';
 
 import globals from '~/config/GlobalStyles';
 import logo_navbar from '~/assets/Images/drawable-xxxhdpi/logo_menu.png';
@@ -28,7 +29,7 @@ console.disableYellowBox = true;
 export default function Home({ navigation }) {
   return (
     <Container>
-      <Header style={styles.container}>
+      <Header>
         <TouchableOpacity style={styles.menu} onPress={navigation.openDrawer}>
           <Icon name="menu" size={24} color="#fff" />
         </TouchableOpacity>
@@ -56,11 +57,17 @@ Home.navigationOptions = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 65,
-    backgroundColor: '#5e2a84',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center'
+    // backgroundColor: '#5e2a84',
+    // flexDirection: 'row',
+    // justifyContent: 'flex-start',
+    // alignItems: 'center',
+    // // position: 'absolute',
+    // top: 0,
+    // left: 0,
+    // right: 0,
+    // // padding: 10,
+    // // height: 65,
+    // marginTop: metrics.navBarHeight
   },
   scroll: {
     // paddingBottom: 500
@@ -73,6 +80,7 @@ const styles = StyleSheet.create({
   logoNav: {
     height: 24,
     width: 24,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+    paddingBottom: 10
   }
 });
