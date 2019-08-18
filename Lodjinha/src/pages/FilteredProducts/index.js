@@ -26,8 +26,8 @@ function FilteredProducts({ navigation }) {
   const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
   const [filtered, setFiltered] = useState([]);
-  const [showmore, setShowmore] = useState(false);
-  const [showless, setShowless] = useState(false);
+  const [changePage, setChangepage] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   const [offset, setOffset] = useState(0);
@@ -38,7 +38,6 @@ function FilteredProducts({ navigation }) {
 
   async function load() {
     const response = await api.get(`/produto?limit=${limit}&offset=${offset}`);
-
     const more = response.data.data
       .map(b => ({
         ...b
@@ -49,37 +48,34 @@ function FilteredProducts({ navigation }) {
 
   const loadMore = useCallback(() => {
     if (limit >= 20 && limit < 80) {
-      setShowmore(true);
+      setChangepage(true);
       setLimit(limit + 20);
       setOffset(offset + 20);
     }
-  }, [limit, offset]);
+  }, []);
 
   const loadLess = useCallback(() => {
     if (limit <= 80 && limit > 20) {
-      setShowless(true);
+      setChangepage(true);
       setLimit(limit - 20);
       setOffset(offset - 20);
     }
-  }, [limit, offset]);
-
+  }, [limit]);
+  // TODO: verificar porque a showless nao funciona
   //Hook que renderiza ao mudar de página
   useEffect(() => {
-    if (showmore || showless) {
+    if (changePage) {
       load();
+      setChangepage(false);
     }
+
     console.log(limit);
     console.log(offset);
-  }, [limit, offset]);
+  }, [changePage]);
 
   //Hook que renderiza ao entrar na página fazendo loading da primeira página
   useEffect(() => {
-    if (
-      filtered &&
-      filtered.constructor === Array &&
-      filtered.length === 0 &&
-      limit <= 80
-    ) {
+    if (filtered && filtered.constructor === Array && filtered.length === 0) {
       setLimit(limit + 20);
       setOffset(offset + 20);
       console.log(limit);
@@ -89,6 +85,10 @@ function FilteredProducts({ navigation }) {
 
     console.log(filtered);
   }, [filtered]);
+
+  // useEffect(() => {
+  //   load();
+  // }, []);
 
   return (
     <Container>
