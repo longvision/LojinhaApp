@@ -4,6 +4,7 @@ import Home from '~/pages/Home';
 import FilteredProducts from '~/pages/FilteredProducts';
 import Details from '~/pages/Details';
 import About from '~/pages/About';
+import AboutScreenNavigator from '~/navigation/routes/AboutScreenNavigator';
 
 const HomeScreenNavigator = createStackNavigator(
   {
@@ -15,9 +16,6 @@ const HomeScreenNavigator = createStackNavigator(
     },
     Details: {
       screen: Details
-    },
-    About: {
-      screen: About
     }
   },
   {

@@ -48,6 +48,8 @@ function Categories({ navigation }) {
         <FlatList
           data={categories}
           horizontal={true}
+          initialNumToRender={10}
+          showsHorizontalScrollIndicator={false}
           keyExtractor={item => String(item.id)}
           renderItem={({ item }) => (
             <Category data={item} navigation={navigation} />

@@ -12,12 +12,12 @@ export const toggleProduct = selectedProduct => ({
   payload: { selectedProduct }
 });
 
-export const loadProductRequest = product => ({
-  type: 'SET_PRODUCT_REQUEST',
-  payload: { product, productId }
-});
+// export const nextProducts = nextProducts => ({
+//   type: 'NEXT_PRODUCTS',
+//   payload: { nextProducts }
+// });
 
-export const loadProductSuccess = data => ({
-  type: 'SET_PRODUCT_SUCCESS',
-  payload: { data }
-});
+// export const loadProductSuccess = data => ({
+//   type: 'SET_PRODUCT_SUCCESS',
+//   payload: { data }
+// });

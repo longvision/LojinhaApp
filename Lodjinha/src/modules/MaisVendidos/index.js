@@ -54,7 +54,8 @@ export default MaisVendidos;
 //Estilização do componente
 const styles = StyleSheet.create({
   container: {
-    height: '100%'
+    height: '100%',
+    marginBottom: 25
   },
   list: {
     // marginTop: 0,

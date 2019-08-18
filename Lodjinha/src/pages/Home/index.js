@@ -13,7 +13,7 @@ import {
   TouchableOpacity
 } from 'react-native-gesture-handler';
 // import HomeHeader from '~/components/HomeHeader';
-
+import GeneralStatusBarColor from '~/components/GeneralStatusBarColor';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Banners from '~/modules/Banners';
 import Categories from '~/modules/Categories';
@@ -24,11 +24,16 @@ import metrics from '~/config/metrics';
 
 import globals from '~/config/GlobalStyles';
 import logo_navbar from '~/assets/Images/drawable-xxxhdpi/logo_menu.png';
+import tag_menu from '~/assets/Images/drawable-xxxhdpi/tag_menu.png';
 console.disableYellowBox = true;
 
 export default function Home({ navigation }) {
   return (
     <Container>
+      <GeneralStatusBarColor
+        barStyle="light-content"
+        backgroundColor="#5e2a84"
+      />
       <Header>
         <TouchableOpacity style={styles.menu} onPress={navigation.openDrawer}>
           <Icon name="menu" size={24} color="#fff" />
@@ -46,13 +51,19 @@ export default function Home({ navigation }) {
 }
 
 Home.navigationOptions = {
-  title: 'Home',
-  drawerLabel: 'Home',
-  headerStyle: {
-    backgroundColor: '#48285b',
-    marginTop: 0
-  },
-  headerTintColor: '#fff'
+  title: 'Home'
+  // drawerLabel: 'Home',
+  // headerStyle: {
+  //   backgroundColor: '#48285b',
+  //   marginTop: 0
+  // },
+  // drawerIcon: () => (
+  //   <Image
+  //     source={tag_menu}
+  //     style={{ height: 24, width: 24, color: '#5e2a84' }}
+  //   />
+  // ),
+  // headerTintColor: '#fff'
 };
 
 const styles = StyleSheet.create({
@@ -69,9 +80,7 @@ const styles = StyleSheet.create({
     // // height: 65,
     // marginTop: metrics.navBarHeight
   },
-  scroll: {
-    // paddingBottom: 500
-  },
+  scroll: {},
   menu: {
     height: 24,
     width: 24,

@@ -4,6 +4,8 @@ import HTML from 'react-native-render-html';
 import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
 import { FAB, Portal, Provider } from 'react-native-paper';
 
+import GeneralStatusBarColor from '~/components/GeneralStatusBarColor';
+
 import {
   View,
   Alert,
@@ -80,14 +82,19 @@ function Details({ navigation }) {
   }, []);
 
   const htmlContent = `${detail.descricao}`;
+
   return (
     <Container>
+      <GeneralStatusBarColor
+        barStyle="light-content"
+        backgroundColor="#fcfcfc"
+      />
       <TouchableOpacity style={styles.btn} onPress={navigation.goBack}>
         <Icon name="arrow-back" size={24} color="#4a4a4a" />
       </TouchableOpacity>
 
       <View style={styles.container}>
-        <ScrollView style={{ flex: 1, padding: 15 }}>
+        <ScrollView style={{ flex: 1, padding: 10 }}>
           <View style={styles.imageCtr}>
             <Image
               source={{ uri: `${detail.urlImagem}` }}
@@ -101,14 +108,15 @@ function Details({ navigation }) {
             <Text style={GlobalStyles.precoPor}>Por: {detail.precoPor}</Text>
           </View>
           <View>
-            <Text style={[GlobalStyles.descricaoProdutoBold, { margin: 15 }]}>
+            <Text style={[GlobalStyles.descricaoProdutoBold, { margin: 10 }]}>
               {htmlContent
                 .split(' ')
                 .slice(0, 2)
                 .join(' ')}
             </Text>
             <HTML
-              style={[GlobalStyles.descricaoProduto, { margin: 15 }]}
+              containerStyle={{ marginLeft: 10, marginBottom: 75 }}
+              baseFontStyle={GlobalStyles.descricaoProduto}
               html={htmlContent}
               imagesMaxWidth={Dimensions.get('window').width}
             />

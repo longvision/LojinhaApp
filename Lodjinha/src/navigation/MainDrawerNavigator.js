@@ -24,6 +24,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import GlobalStyles from '~/config/GlobalStyles';
 import bg from '~/assets/Images/drawable-xxxhdpi/menu_pattern.png';
 import logo_navbar from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
+import metrics from '~/config/metrics';
+import tag_menu from '~/assets/Images/drawable-xxxhdpi/tag_menu.png';
+import home_menu from '~/assets/Images/drawable-xxxhdpi/home_menu.png';
 
 const CustomDrawerComponent = props => (
   <SafeAreaView style={{ flex: 1, backgroundColor: '#5e2a84' }}>
@@ -64,23 +67,38 @@ const CustomDrawerComponent = props => (
   </SafeAreaView>
 );
 
+// TODO: VERIFICAR ROTAS DA DRAWER E FINALIZAR
 //3 Tabs principais da aplicação:
 const MainDrawerNavigator = createDrawerNavigator(
   {
     Home: {
-      screen: HomeScreenNavigator
+      screen: HomeScreenNavigator,
+      navigationOptions: {
+        drawerLabel: 'Home',
+        drawerIcon: () => (
+          <Image source={tag_menu} style={{ height: 24, width: 24 }} />
+        )
+      }
     },
     About: {
-      screen: About
+      screen: AboutScreenNavigator,
+      navigationOptions: {
+        drawerLabel: 'Sobre o Aplicativo',
+        drawerIcon: () => (
+          <Image source={home_menu} style={{ height: 24, width: 24 }} />
+        )
+      }
     }
   },
   {
-    drawerWidth: 350,
+    drawerWidth: metrics.screenWidth * 0.83,
     cardStyle: { backgroundColor: '#fcfcfc' },
+    useNativeAnimations: false,
+    drawerType: 'front',
     contentComponent: CustomDrawerComponent,
-    // resetOnBlur: true,
     contentOptions: {
-      activeTintColor: '#5e2a84'
+      activeTintColor: '#5e2a84',
+      labelStyle: GlobalStyles.menuItem
     }
   }
 );

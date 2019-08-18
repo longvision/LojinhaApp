@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, Image, StyleSheet, View } from 'react-native';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import GeneralStatusBarColor from '~/components/GeneralStatusBarColor';
 import { Container, Header } from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import home from '~/assets/Images/drawable-xxxhdpi/home_menu.png';
@@ -13,6 +13,10 @@ console.disableYellowBox = true;
 export default function About({ navigation }) {
   return (
     <Container>
+      <GeneralStatusBarColor
+        barStyle="light-content"
+        backgroundColor="#5e2a84"
+      />
       <Header style={styles.header}>
         <TouchableOpacity style={styles.menu} onPress={navigation.openDrawer}>
           <Icon name="menu" size={24} color="#fff" />
@@ -50,15 +54,15 @@ export default function About({ navigation }) {
 }
 
 About.navigationOptions = {
-  title: 'Sobre o aplicativo',
-  drawerLabel: 'About',
+  title: 'About',
+  drawerLabel: 'Sobre o Aplicativo',
   headerStyle: {
     backgroundColor: '#48285b',
     marginTop: 0
   },
 
   drawerIcon: () => (
-    <Image source={home} style={{ height: 24, color: '#5e2a84' }} />
+    <Image source={home} style={{ height: 24, width: 24, color: '#5e2a84' }} />
   )
 };
 

@@ -10,7 +10,7 @@ export const toggleCategory = selectedCategory => ({
   payload: { selectedCategory }
 });
 
-// export const addActivity = (category, gym, status, date) => ({
-//   type: 'ADD_CATEGORY',
-//   payload: { category, gym, status, date }
+// export const loadMoreProducts = ({ selectedCategory, offset }) => ({
+//   type: 'loadMoreProducts',
+//   payload: { selectedCategory, offset }
 // });

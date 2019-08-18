@@ -54,7 +54,7 @@ const GlobalStyles = StyleSheet.create({
   menuItem: {
     fontFamily: 'Roboto-Medium',
     fontSize: 14,
-    color: '#fff',
+    color: '#4a4a4a',
     letterSpacing: -0.3
   },
   nomeDesenvolvedor: {

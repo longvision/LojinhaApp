@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
@@ -8,39 +8,94 @@ import {
   Text,
   FlatList,
   StyleSheet,
+  ActivityIndicator,
   Platform,
   Dimensions
 } from 'react-native';
-
+import GeneralStatusBarColor from '~/components/GeneralStatusBarColor';
 import Product from '~/components/Product';
 import Header from '~/components/Header';
 import { Container } from './styles';
 import api from '~/services/api';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import {
+  TouchableHighlight,
+  TouchableOpacity
+} from 'react-native-gesture-handler';
 
 function FilteredProducts({ navigation }) {
   const category = useSelector(state => state.category.selectedCategory);
   //Estado local: gyms
-  const [filtered, setFiltered] = useState();
+  const [filtered, setFiltered] = useState([]);
+  const [showmore, setShowmore] = useState(false);
+  const [showless, setShowless] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(20);
+
+  // TODO: resolver a listagem
   //Chama a api para carregar as lista de gyms
-  async function loadProducts() {
-    const response = await api.get('/produto/');
-    const selectedItem = response.data.data
+
+  async function load() {
+    const response = await api.get(`/produto?limit=${limit}&offset=${offset}`);
+
+    const more = response.data.data
       .map(b => ({
         ...b
       }))
-      .filter(f => f.categoria.descricao == category)
-      .slice(0, 20);
-    setFiltered(selectedItem);
+      .filter(f => f.categoria.descricao == category);
+    setFiltered(more);
   }
-  //Hook semelhante ao 'componentDidMount', para carregar as gyms
+
+  const loadMore = useCallback(() => {
+    if (limit >= 20 && limit < 80) {
+      setShowmore(true);
+      setLimit(limit + 20);
+      setOffset(offset + 20);
+    }
+  }, [limit, offset]);
+
+  const loadLess = useCallback(() => {
+    if (limit <= 80 && limit > 20) {
+      setShowless(true);
+      setLimit(limit - 20);
+      setOffset(offset - 20);
+    }
+  }, [limit, offset]);
+
+  //Hook que renderiza ao mudar de página
   useEffect(() => {
-    loadProducts();
-  }, [category]);
+    if (showmore || showless) {
+      load();
+    }
+    console.log(limit);
+    console.log(offset);
+  }, [limit, offset]);
+
+  //Hook que renderiza ao entrar na página fazendo loading da primeira página
+  useEffect(() => {
+    if (
+      filtered &&
+      filtered.constructor === Array &&
+      filtered.length === 0 &&
+      limit <= 80
+    ) {
+      setLimit(limit + 20);
+      setOffset(offset + 20);
+      console.log(limit);
+      console.log(offset);
+      load();
+    }
+
+    console.log(filtered);
+  }, [filtered]);
 
   return (
     <Container>
+      <GeneralStatusBarColor
+        barStyle="light-content"
+        backgroundColor="#5e2a84"
+      />
       <Header navigation={navigation} item={category} />
       <FlatList
         style={styles.list}
@@ -48,6 +103,21 @@ function FilteredProducts({ navigation }) {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Product data={item} navigation={navigation} />
+        )}
+        ListFooterComponent={() => (
+          //Footer View with Load More button
+          <View style={styles.btns}>
+            <View style={styles.footer}>
+              <TouchableOpacity onPress={loadLess} style={styles.loadMoreBtn}>
+                <Text style={styles.btnText}>Página Anterior</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.footer}>
+              <TouchableOpacity onPress={loadMore} style={styles.loadMoreBtn}>
+                <Text style={styles.btnText}>Próxima Página</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         )}
       />
     </Container>
@@ -90,5 +160,31 @@ const styles = StyleSheet.create({
     paddingLeft: 7,
     paddingTop: 10,
     paddingBottom: 10
+  },
+  footer: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
+  loadMoreBtn: {
+    padding: 10,
+    backgroundColor: '#800000',
+    borderRadius: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  btnText: {
+    color: 'white',
+    fontSize: 15,
+    textAlign: 'center'
+  },
+  btns: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 25
   }
 });

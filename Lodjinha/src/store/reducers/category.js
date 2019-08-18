@@ -12,21 +12,11 @@ export default function category(state = INITIAL_STATE, action) {
         selectedCategory: action.payload.selectedCategory
       };
 
-    case ADD_CATEGORY:
-      return {
-        ...state
-        // history: [
-        //   ...state.history,
-        //   {
-        //     category: {
-        //       description: action.payload.category,
-        //       checkinStatus: action.payload.status,
-        //       checkinDate: action.payload.date
-        //     },
-        //     gym: action.payload.
-        //   }
-        // ]
-      };
+    // case LOAD_MORE_PRODUCTS:
+    //   return {
+    //     ...state,
+    //     currentList: { action.payload.offset }
+    //   };
 
     default:
       return state;
