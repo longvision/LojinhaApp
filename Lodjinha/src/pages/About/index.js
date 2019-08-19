@@ -45,7 +45,7 @@ export default function About({ navigation }) {
             Ricardo Naoki Horiguchi
           </Text>
           <Text style={GlobalStyles.dataDesenvolvimento}>
-            17 de Agosto de 2019
+            19 de Agosto de 2019
           </Text>
         </View>
       </View>

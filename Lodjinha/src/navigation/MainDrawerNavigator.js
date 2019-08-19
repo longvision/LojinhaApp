@@ -93,7 +93,7 @@ const MainDrawerNavigator = createDrawerNavigator(
   {
     drawerWidth: metrics.screenWidth * 0.83,
     cardStyle: { backgroundColor: '#fcfcfc' },
-    useNativeAnimations: false,
+    useNativeAnimations: true,
     drawerType: 'front',
     contentComponent: CustomDrawerComponent,
     contentOptions: {
