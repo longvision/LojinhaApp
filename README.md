@@ -1,78 +1,113 @@
-# o Lodjinha
 
-Minimo SDK: API 15</br>
-Linguagem: Java ou Kotlin</br>
+## Sobre o Projeto
 
-Serão consideradas funcionalidades completas se:</br>
-- O descritivo da funcionalidade for implementado completamente.</br>
-- A tela estiver aderente ao protótipo.</br>
-- Não houver bugs impeditivos que atrapalhem ou impossibilitem a execução da funcionalidade.</br>
-- O layout estiver aderente à todos os devices que suportem a versão mínima e superiores.</br>
+Este projeto visa a criação de um app utilizando React Native, para o desafio listado neste [arquivo](ChallengeREADME.md). O desafio foi elaborado utilizando-se **React-Native** ao invés de Java.
 
-Serão considerados bônus:</br>
-- Teste unitário </br>
-- Teste de UI
+<!-- GETTING STARTED -->
 
-## DESAFIO
+# Começando
 
-### 1 - Home
+Para conseguir utilizar o aplicativo faça uma cópia local dos arquivos e siga os passos abaixo.
 
-###### Funcionalidade 01
-Exibir a barra de banners rotativo. Cada banner deve preencher todo o espaço horizontal da tela. Ao realizar o swipe left ou swipe right, o banner deve ser trocado pelo próximo ou anterior, conforme disponibilidade. Utilizar um indicador para facilitar ao usuário saber quantos banners existem e em qual posição ele está.
+### Pré-requisitos
 
-###### Funcionalidade 02
-Exibir um menu deslizável horizontal com as categorias, conforme protótipo. O número de categorias é fixo, e não há necessidade de scroll infinito. Ao clicar em uma categoria, o app deve redirecionar o usuário para a Funcionalidade 04.
+Antes de seguirmos para as configurações e uso do projeto, é ideal que você tenha o ambiente configurado para criar e testar aplicativos em React Native, para isso você pode seguir o guia do link abaixo:
 
-###### Funcionalidade 03
-Exibir uma lista dos produtos mais vendidos. A lista possui um número fixo de produtos e não há necessidade de scroll infinito. Ao clicar em um produto, o usuário deve ser direcionado à Funcionalidade 05.
+[Ambiente React Native (Android/iOS)](https://github.com/Rocketseat/ambiente-react-native)
 
-### 2 - Listagem de Categorias
-	
-###### Premissas:
-- Um indicador de loading deve ser exibido enquanto uma nova página estiver sendo carregada.
-- O usuário não deve ficar com a rolagem e navegação travados enquanto uma nova página estiver sendo carregada.
 
-###### Funcionalidade 04
-Exibir uma lista dos produtos da categoria selecionada, conforme protótipo. O lista possui um número desconhecido de produtos, e deverá ser paginado, limitando a página em 20 registros. Ao tocar em um produto, o usuário deverá ser direcionado à Funcionalidade 05.
+### Instalação
+#### Basicamente para rodar o programa é preciso 4 etapas:
+instalar os `node_modules`, configurar as pastas `ios` e `android`, fazer o `build` do projeto e `rodar` o projeto.
 
-### 3 - Exibição de Produto
-	
-###### Funcionalidade 05
-Exibir a descrição do produto conforme protótipo. O botão Reservar deve estar sempre visível, fixado na parte de baixo da tela. O texto de descrição poderá vir formatado como HTML. O app deve tratar esse texto e exibí-lo corretamente (negrito, itálico, etc).
-	
-###### Funcionalidade 06
-Ao clicar no botão Reservar, o app deve efetuar a reserva do produto com o servidor. Exibir a mensagem de sucesso ou erro da reserva. O usuário não deve poder tocar outra vez no botão enquanto a primeira reserva não for concluída. Se a reserva for concluída com sucesso, após fechar a mensagem de sucesso, retornar para a tela que chamou a Exibição de Produto.
+## 1. Instalando os node_modules:
 
-### 4 - Sobre
+1. Para instalar e utilizar esse projeto o processo é bem simples, basta digitar um dos comandos abaixo no terminal:
 
-###### Funcionalidade 07
-Exibir o logo e o nome do app. Na parte de baixo da tela, exibir o nome do desenvolvedor (seu nome) e a data de desenvolvimento.
+```sh
+yarn install
+```
+ou
+```sh
+npm install
+```
 
-## RECURSOS
 
-###### Protótipo Navegável
+1. Com isso o projeto será criado com todas as dependências do projeto devidamente instaladas e linkadas, tal como os arquivos de configuração que são copiados para o projeto.
 
-https://marvelapp.com/f1jb1eg
+---
+## 2. Configurando as pastas ios e android:
+#### Passo Adicional no Android
 
-###### Fontes e Cores
+Para que os gestos sejam habilitados no Android é necessário a seguinte verificação, que é bem simples, abra o arquivo `android/app/src/main/java/<pacote_do_projeto>/MainActivity.java`, e veja se o código está como o abaixo:
 
-https://scene.zeplin.io/project/589b3ef2dba1a0801d3f1be1
+```java
+// ...
+import com.facebook.react.ReactActivity;
+//Adicionar código abaixo caso não exista
+import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactRootView;
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+```
 
-https://fonts.google.com/specimen/Pacifico
+```java
+public class MainActivity extends ReactActivity {
+  @Override
+  protected String getMainComponentName() { ... }
+//Adicionar código abaixo caso não exista
+  @Override
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new ReactActivityDelegate(this, getMainComponentName()) {
+      @Override
+      protected ReactRootView createRootView() {
+        return new RNGestureHandlerEnabledRootView(MainActivity.this);
+      }
+    };
+  }
+}
+```
+#### Passo Adicional no iOS
 
-Os arquivos das imagens estão na pasta imagens.
+To run the project in your XCode simulator:
 
-###### Documentação
+https://stackoverflow.com/questions/50453883/react-native-build-failed-react-rctbridge-h-file-not-found
 
-https://alodjinha.herokuapp.com/swagger-ui.html
 
-## CONCLUSÃO
+ iOS Steps:
+1. Abra o terminal.
+2. Vá para a pasta ios.
+3. Saia do Xcode.
+4. Rode o commando   ```$ run pod install```.
+5. Abra o arquivo .xcworkspace.
+6. Dê um Clean (cmd+shift+k) e o build (cmd+b) no projeto.
 
-Crie um Fork desse repositório e envie um pull request.</br>
-Caso seu projeto possua alguma pré condição para ser executado, crie um arquivo README.md com um passo a passo para que seja possível executá-lo.</br>
-Projetos que não puderem ser executados não serão avaliados.
+---
+## 3. Fazendo o build do projeto para rodar a aplicação:
 
-# COMEÇAR!!!
+É preciso ter instalado o Xcode ou o android studio para que possa fazer o build do app.
+Assim como é necessário ter instalado o node e o npm globalmente em sua máquina. Basta baixar e instalar do link a seguir:
+[https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-Foque em entregar funcionalidades completas!</br></br>
-Quantidade não é qualidade!
+1. Faça o build com o seguinte comando abaixo para criar o app no Xcode (iOS):
+
+```sh
+react-native run-ios
+```
+
+ou utilize o comando abaixo para rodar no simulador do Android (Android Studio):
+
+```sh
+react-native run-android
+```
+## 4. Rode a aplicação utilizando o comando abaixo:
+
+```sh
+yarn start
+```
+ou
+```sh
+npm start
+```
+## Dúvidas e Contato
+
+Ricardo Naoki Horiguchi - [Github](https://github.com/longvision) - **r.n.hori@gmail.com**
