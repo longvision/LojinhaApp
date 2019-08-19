@@ -1,7 +1,13 @@
-import { TOGGLE_CATEGORY, ADD_CATEGORY } from '~/store/actions/category';
+import {
+  TOGGLE_CATEGORY,
+  NEXT_PAGE,
+  PREV_PAGE
+} from '~/store/actions/category';
 
 const INITIAL_STATE = {
-  selectedCategory: {}
+  selectedCategory: {},
+  currentLimit: 20,
+  currentOffset: 0
 };
 
 export default function category(state = INITIAL_STATE, action) {
@@ -12,11 +18,18 @@ export default function category(state = INITIAL_STATE, action) {
         selectedCategory: action.payload.selectedCategory
       };
 
-    // case LOAD_MORE_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     currentList: { action.payload.offset }
-    //   };
+    case NEXT_PAGE:
+      return {
+        ...state,
+        currentLimit: action.payload.limit,
+        currentOffset: action.payload.offset
+      };
+    case PREV_PAGE:
+      return {
+        ...state,
+        currentLimit: action.payload.limit,
+        currentOffset: action.payload.offset
+      };
 
     default:
       return state;

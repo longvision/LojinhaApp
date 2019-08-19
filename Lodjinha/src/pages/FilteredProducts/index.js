@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
-
+// import logo from '~/assets/Images/drawable-xxxhdpi/logo_navbar.png';
+import { FAB, Portal, Provider } from 'react-native-paper';
 import {
   View,
   Text,
@@ -21,42 +21,47 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from 'react-native-gesture-handler';
+import * as CategoryActions from '~/store/actions/category';
 
 function FilteredProducts({ navigation }) {
   const category = useSelector(state => state.category.selectedCategory);
+
   //Estado local: gyms
   const [filtered, setFiltered] = useState([]);
-  const [changePage, setChangepage] = useState(false);
-
-  const [loading, setLoading] = useState(false);
-
-  const [offset, setOffset] = useState(0);
+  const [changePage, setChangePage] = useState(false);
   const [limit, setLimit] = useState(20);
+  const [offset, setOffset] = useState(0);
+  const [showButtons, setShowButtons] = useState(true);
 
   // TODO: resolver a listagem
   //Chama a api para carregar as lista de gyms
 
+  // Carregar todos os items por categoria
+  // 2.
   async function load() {
     const response = await api.get(`/produto?limit=${limit}&offset=${offset}`);
+
     const more = response.data.data
       .map(b => ({
         ...b
       }))
       .filter(f => f.categoria.descricao == category);
-    setFiltered(more);
+    if (more.constructor === Array) {
+      setFiltered(more);
+    }
   }
 
   const loadMore = useCallback(() => {
-    if (limit >= 20 && limit < 80) {
-      setChangepage(true);
+    setChangePage(true);
+    if (offset >= 0 && limit < 80) {
       setLimit(limit + 20);
       setOffset(offset + 20);
     }
   }, []);
 
   const loadLess = useCallback(() => {
-    if (limit <= 80 && limit > 20) {
-      setChangepage(true);
+    setChangePage(true);
+    if (offset > 0 && limit <= 100) {
       setLimit(limit - 20);
       setOffset(offset - 20);
     }
@@ -66,30 +71,37 @@ function FilteredProducts({ navigation }) {
   useEffect(() => {
     if (changePage) {
       load();
-      setChangepage(false);
+      setShowButtons(true);
+      setChangePage(false);
     }
 
     console.log(limit);
     console.log(offset);
-  }, [changePage]);
+  }, [changePage, filtered]);
 
   //Hook que renderiza ao entrar na página fazendo loading da primeira página
   useEffect(() => {
-    if (filtered && filtered.constructor === Array && filtered.length === 0) {
+    if (
+      filtered &&
+      filtered.constructor === Array &&
+      filtered.length === 0 &&
+      limit < 100
+    ) {
       setLimit(limit + 20);
       setOffset(offset + 20);
-      console.log(limit);
-      console.log(offset);
       load();
+      console.log(limit);
+      setShowButtons(false);
+    } else {
     }
-
-    console.log(filtered);
+    return () => {
+      console.log(filtered);
+    };
   }, [filtered]);
 
-  // useEffect(() => {
-  //   load();
-  // }, []);
-
+  useEffect(() => {
+    setShowButtons(true);
+  }, []);
   return (
     <Container>
       <GeneralStatusBarColor
@@ -104,22 +116,38 @@ function FilteredProducts({ navigation }) {
         renderItem={({ item }) => (
           <Product data={item} navigation={navigation} />
         )}
-        ListFooterComponent={() => (
-          //Footer View with Load More button
-          <View style={styles.btns}>
-            <View style={styles.footer}>
-              <TouchableOpacity onPress={loadLess} style={styles.loadMoreBtn}>
-                <Text style={styles.btnText}>Página Anterior</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.footer}>
-              <TouchableOpacity onPress={loadMore} style={styles.loadMoreBtn}>
-                <Text style={styles.btnText}>Próxima Página</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
       />
+      {showButtons ? (
+        <View>
+          <FAB
+            style={{
+              backgroundColor: '#5e2a84',
+              color: '#fcfcfc',
+              position: 'absolute',
+              margin: 16,
+              marginRight: 75,
+              right: 0,
+              bottom: 0
+            }}
+            small
+            icon="remove"
+            onPress={loadLess}
+          />
+          <FAB
+            style={{
+              backgroundColor: '#5e2a84',
+              color: '#fcfcfc',
+              position: 'absolute',
+              margin: 16,
+              right: 0,
+              bottom: 0
+            }}
+            small
+            icon="add"
+            onPress={loadMore}
+          />
+        </View>
+      ) : null}
     </Container>
   );
 }
@@ -138,7 +166,8 @@ FilteredProducts.navigationOptions = {
 //Estilização do componente
 const styles = StyleSheet.create({
   list: {
-    marginTop: 2
+    marginTop: 2,
+    marginBottom: 75
   },
   ban: {
     flex: 1,
