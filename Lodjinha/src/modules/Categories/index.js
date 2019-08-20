@@ -6,8 +6,7 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  Platform,
-  Dimensions
+
 } from 'react-native';
 import GlobalStyles from '~/config/GlobalStyles';
 import Category from '~/components/Category';
