@@ -5,6 +5,22 @@ Este projeto visa a criação de um app utilizando React Native, para o desafio 
 
 <!-- GETTING STARTED -->
 
+## Screens:
+
+- [Home Screen](https://longvision.s3.amazonaws.com/loj5.png)
+- <img src="https://longvision.s3.amazonaws.com/loj5.png">
+- [Product Detail](https://longvision.s3.amazonaws.com/loj4.png)
+- <img src="https://longvision.s3.amazonaws.com/lojn4.png">
+- [Featured Products](https://longvision.s3.amazonaws.com/loj6.png)
+- <img src="https://longvision.s3.amazonaws.com/loj6.png">
+- [Side Drawer Menu](https://longvision.s3.amazonaws.com/loj2.png)
+- <img src="https://longvision.s3.amazonaws.com/loj2.png">
+- [Product Added](https://longvision.s3.amazonaws.com/loj3.png)
+- <img src="https://longvision.s3.amazonaws.com/loj3.png">
+- [Developer](https://longvision.s3.amazonaws.com/loj1.png)
+- <img src="https://longvision.s3.amazonaws.com/loj1.png">
+
+
 # Começando
 
 Para conseguir utilizar o aplicativo faça uma cópia local dos arquivos e siga os passos abaixo.
