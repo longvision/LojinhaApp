@@ -1,7 +1,7 @@
 
 ## Sobre o Projeto
 
-Este projeto visa a criação de um app utilizando React Native, para o desafio listado neste [arquivo](ChallengeREADME.md). O desafio foi elaborado utilizando-se **React-Native** ao invés de Java.
+Este projeto visa a criação de um app utilizando React Native, para o desafio listado neste [arquivo](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). O desafio foi elaborado utilizando-se **React-Native** ao invés de Java.
 
 <!-- GETTING STARTED -->
 
