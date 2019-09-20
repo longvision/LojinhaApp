@@ -1,7 +1,7 @@
 
 ## Sobre o Projeto
 
-Este projeto visa a criação de um app utilizando React Native, para o desafio listado neste [arquivo](ChallengeREADME.md). O desafio foi elaborado utilizando-se **React-Native** ao invés de Java.
+The following project was developed to attend the requirements of [test](ChallengeREADME.md). The test was developed using react-native.
 
 <!-- GETTING STARTED -->
 
