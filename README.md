@@ -1,32 +1,33 @@
 
-## About the project/Sobre o projeto:
+## About the project: / Sobre o projeto:
 
-The following project was developed to attend the requirements of this [Briefing/(Prototype and Requirements)](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). The app was developed using react-native, Redux, other tools.
+The following project was developed to attend the requirements of this [Briefing/(Prototype and Requirements)](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). The app was developed using React-Native, Redux, as well as other tools.
 
+O projeto a seguir foi desenvolvido visando atender os requisitos deste [Briefing/(Protótipo e requisitos)](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). O app foi desenvolvido utilizando-se React-Native e Redux, entre outras ferramentas.
 <!-- GETTING STARTED -->
 
-## Screens/Telas:
+## Screens / Telas:
 
-- [Home Screen](https://longvision.s3.amazonaws.com/loj5.png)
+- [Home Screen / Tela da Home](https://longvision.s3.amazonaws.com/loj5.png)
 - <img src="https://longvision.s3.amazonaws.com/loj5.png">
-- [Product Detail](https://longvision.s3.amazonaws.com/loj4.png)
+- [Product Detail / Detalhes dos Produtos](https://longvision.s3.amazonaws.com/loj4.png)
 - <img src="https://longvision.s3.amazonaws.com/loj4.png">
-- [Featured Products](https://longvision.s3.amazonaws.com/loj6.png)
+- [Featured Products / Produtos Promovidos](https://longvision.s3.amazonaws.com/loj6.png)
 - <img src="https://longvision.s3.amazonaws.com/loj6.png">
-- [Side Drawer Menu](https://longvision.s3.amazonaws.com/loj2.png)
+- [Side Drawer Menu / Menu Lateral](https://longvision.s3.amazonaws.com/loj2.png)
 - <img src="https://longvision.s3.amazonaws.com/loj2.png">
-- [Product Added](https://longvision.s3.amazonaws.com/loj3.png)
+- [Product Added / Produto Adicionado](https://longvision.s3.amazonaws.com/loj3.png)
 - <img src="https://longvision.s3.amazonaws.com/loj3.png">
-- [Developer](https://longvision.s3.amazonaws.com/loj1.png)
+- [Developer / Desenvolvedor](https://longvision.s3.amazonaws.com/loj1.png)
 - <img src="https://longvision.s3.amazonaws.com/loj1.png">
 
 
-# Installing the app/Instalando o app
+# Installing the app / Instalando o app
 
 To use the app you should make a local copy of the files and follow the below steps.
 Para conseguir utilizar o aplicativo faça uma cópia local dos arquivos e siga os passos abaixo.
 
-### Environment requirements/Requisitos de ambiente
+### Environment requirements / Requisitos de ambiente
 
 Before proceeding to the configurations and use the project, it is advised to configure the environment to create and test react-native apps, therefore you can follow the link below (only temporarily available in portuguese): 
 
@@ -36,7 +37,7 @@ Antes de seguirmos para as configurações e uso do projeto, é ideal que você 
 [Ambiente React Native (Android/iOS)](https://github.com/Rocketseat/ambiente-react-native)
 
 
-### Installing/Instalando
+### Installing / Instalando
 #### Basically to run the software there are 4 steps:
 Install `node_modules`, configure `ios` and `android` folders, `build` the project and `run` the project.
 
@@ -44,7 +45,7 @@ Install `node_modules`, configure `ios` and `android` folders, `build` the proje
 instalar os `node_modules`, configurar as pastas `ios` e `android`, fazer o `build` do projeto e `rodar` o projeto.
 
 
-## 1. Installing `node_modules`/Instalando os `node_modules`:
+## 1. Installing `node_modules` / Instalando os `node_modules`:
 
 1. In order to install and use this project, the process is very simple. Just type inside the folder address, the below commands in your mac or windows terminal. 
 
