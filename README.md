@@ -1,7 +1,7 @@
 
 ## Sobre o Projeto
 
-The following project was developed to attend the requirements of this [test](ChallengeREADME.md). The test was developed using react-native.
+The following project was developed to attend the requirements of this [Briefing/(Prototype and Requirements)](ChallengeREADME.md). The test was developed using react-native.
 
 <!-- GETTING STARTED -->
 
