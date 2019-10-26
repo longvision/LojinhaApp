@@ -1,7 +1,7 @@
 
 ## Sobre o Projeto
 
-The following project was developed to attend the requirements of this [Briefing/(Prototype and Requirements)](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). The test was developed using react-native.
+The following project was developed to attend the requirements of this [Briefing/(Prototype and Requirements)](https://github.com/longvision/React-Native-Mobile-Startup-Test/blob/master/Lodjinha/ChallengeREADME.md). The app was developed using react-native, Redux, other tools.
 
 <!-- GETTING STARTED -->
 
