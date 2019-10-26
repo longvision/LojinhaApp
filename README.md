@@ -98,7 +98,7 @@ public class MainActivity extends ReactActivity {
   }
 }
 ```
-#### IOs extra step. / Passo Adicional no iOS
+#### iOS extra step. / Passo Adicional no iOS
 
 To run the project in your XCode simulator:
 
